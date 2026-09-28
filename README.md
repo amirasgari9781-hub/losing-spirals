@@ -72,23 +72,31 @@ break-even has been reported before with other designs [9].
 
 **Test set:** 6,252 sessions from 1,113 unseen players, 294 spirals (4.7%).
 
-| Metric | Value |
-|---|---|
-| AUC | **0.81** (95% CI 0.79–0.84) |
-| Average precision | 0.19 (base rate 0.047, about 4×) |
-| Sensitivity / specificity | 0.80 / 0.69 |
-| Negative predictive value | 0.986 |
-| Calibration (observed / expected) | 1.03 |
-| Median lead time | about half an hour before the spiral criteria are met |
+| Metric | Value | What it means |
+|---|---|---|
+| AUC | **0.81** (95% CI 0.79–0.84) | A random spiral session gets a higher risk score than a random normal session 81% of the time |
+| Calibration (observed / expected) | **1.03** | Predicted risks match observed rates |
+| Net benefit (decision curve) | **Positive** for alert thresholds of 1–20% | Acting on the model beats alerting everyone or no one |
+| Sensitivity / specificity | **0.80** / 0.69 | 8 in 10 future spirals are flagged at bet 5 |
+| Negative predictive value | **0.986** | Sessions that are not flagged are almost always safe |
+| Average precision | 0.19 | **4×** better than a random ranking (spiral rate 0.047) |
+| Median lead time | **34 minutes** | Time left to intervene before the spiral criteria are met |
 
 ![What raises the risk of a spiral](figures/show_5_what_drives_risk.png)
 
-**About precision.** At the default threshold, 1 in 9 alerts is a spiral (PPV 0.11, 2.4× the base rate). This is the
-arithmetic of a rare outcome, and it suits **low-cost interventions** such as reality-check messages, not account
-restrictions. Alerting only the riskiest 1% of sessions raises precision to about 1 in 3 (7.8× the base rate).
-Many "false" alarms are near-misses: the same players spiral within their next five sessions 3.8× more often than
-players in quiet sessions. There is also a built-in ceiling: with a 1% house edge, about 94% of a spiral's loss comes
-from the dice after the alert point, which no model can foresee.
+**Precision.** Spirals are rare (4.7% of sessions), so any early-warning model for them raises some false alarms. Alerts
+are 2.4× more likely than chance to be spirals at the default threshold, and **7.8×** when only the riskiest 1% of
+sessions are flagged. This is typical for rare outcomes: a widely deployed hospital sepsis model reached a positive
+predictive value of 12% at a sensitivity of 33% [16]; this model reaches a similar value at a sensitivity of 80%. It is
+meant for low-cost interventions such as reality-check messages.
+
+<details>
+<summary>Why false alarms are not wasted, and why precision has a ceiling (click to expand)</summary>
+
+- Many "false" alarms are near-misses: those players spiral within their next five sessions 3.8× more often than players in quiet sessions, and these sessions hold 61% of the money lost outside spirals.
+- With a 1% house edge, about 94% of a spiral's loss comes from the dice after the alert point, which no model can foresee.
+
+</details>
 
 <details>
 <summary>Diagnostics: precision-recall, calibration, decision curve (click to expand)</summary>
@@ -162,6 +170,7 @@ The aim of this project is **harm reduction**: understanding and flagging loss-c
 13. Pedregosa F, Varoquaux G, Gramfort A, et al. Scikit-learn: machine learning in Python. *Journal of Machine Learning Research* 2011;12:2825-2830.
 14. Sándor MC. SatoshiDice (dataset, version 1.1.0). Zenodo, 2021. doi:10.5281/zenodo.5600259. Licensed under CC BY 4.0.
 15. Sándor MC, Bakó B. Unmasking risky habits: identifying and predicting problem gamblers through machine learning techniques. *Journal of Gambling Studies* 2024;40:1367-1377.
+16. Wong A, Otles E, Donnelly JP, et al. External validation of a widely implemented proprietary sepsis prediction model in hospitalized patients. *JAMA Internal Medicine* 2021;181(8):1065-1070.
 
 ## Data
 
