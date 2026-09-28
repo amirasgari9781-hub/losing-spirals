@@ -1,0 +1,13 @@
+Copyright (c) 2026 Amir Asgari. All rights reserved.
+
+Text and figures in this repository may be shared with attribution, for non-commercial purposes and without
+modification, under the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International licence
+(CC BY-NC-ND 4.0): https://creativecommons.org/licenses/by-nc-nd/4.0/
+
+No permission is granted to use, copy, modify or distribute any code, methods implementation or derived models
+from this project without prior written permission from the author.
+
+Third-party data keep their own terms and are not covered by this notice:
+- SatoshiDice dataset by Máté Csaba Sándor (doi:10.5281/zenodo.5600259), licensed under CC BY 4.0.
+- Etheroll records are public Ethereum blockchain data, retrieved through the Etherscan.io APIs (Powered by Etherscan.io APIs).
+No raw data are included in this repository.

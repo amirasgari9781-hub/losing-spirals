@@ -1,0 +1,9 @@
+# never publish raw data, keys or the full notebook from this showcase repository
+data/
+*.parquet
+*.csv
+*.zip
+*key*.txt
+*.ipynb
+.ipynb_checkpoints/
+__pycache__/
